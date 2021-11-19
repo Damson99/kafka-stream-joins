@@ -12,6 +12,7 @@ import org.apache.kafka.streams.kstream.StreamJoined;
 import org.springframework.cloud.stream.annotation.EnableBinding;
 import org.springframework.cloud.stream.annotation.Input;
 import org.springframework.cloud.stream.annotation.StreamListener;
+import org.springframework.context.annotation.Profile;
 import org.springframework.kafka.support.serializer.JsonSerde;
 import org.springframework.stereotype.Service;
 
@@ -21,9 +22,10 @@ import java.time.ZoneOffset;
 
 @Slf4j
 @Service
-@EnableBinding(OTPValidationService.class)
+@Profile("payment-otp")
+@EnableBinding(OTPValidationKafkaService.class)
 @RequiredArgsConstructor
-public class OTPValidationService {
+public class OTPValidationKafkaService {
     private final RecordBuilderService recordBuilderService;
 
     @StreamListener

@@ -1,4 +1,4 @@
-package com.cloud.kafkastreamjoins.biner;
+package com.cloud.kafkastreamjoins.binder;
 
 import com.cloud.kafkastreamjoins.model.input.PaymentConfirmation;
 import com.cloud.kafkastreamjoins.model.input.PaymentRequest;

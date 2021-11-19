@@ -1,15 +1,48 @@
+#=====OPT PAYMENTS=====
+#spring:
+#  profiles:
+#    active: payment-otp
+#  cloud:
+#    stream:
+#      bindings:
+#        payment-request-channel:
+#          destination: payment-request
+#        payment-confirmation-channel:
+#          destination: payment-confirmation
+#      kafka:
+#        streams:
+#          binder:
+#            brokers:  localhost:9092
+#            configuration:
+#              commit.interval.ms: 10000
+#              state.dir: state-store
+#              default:
+#                key:
+#                  serde: org.apache.kafka.common.serialization.Serdes$StringSerde
+#                value:
+#                  serde: org.apache.kafka.common.serialization.Serdes$StringSerde
+#          bindings:
+#            payment-request-channel:
+#              consumer:
+#                timestampExtractorBeanName: requestTimeExtractor
+#            payment-confirmation-channel:
+#              consumer:
+#                timestampExtractorBeanName: confirmationTimeExtractor
+#=====LAST USER LOGIN=====
 spring:
+  profiles:
+    active: user-login
   cloud:
     stream:
       bindings:
-        payment-request-channel:
-          destination: payment-request
-        payment-confirmation-channel:
-          destination: payment-confirmation
+        user-master-channel:
+          destination: user-master
+        user-login-channel:
+          destination: user-login
       kafka:
         streams:
           binder:
-            brokers:  localhost:9092
+            brokers: localhost:9092
             configuration:
               commit.interval.ms: 10000
               state.dir: state-store
@@ -18,10 +51,3 @@ spring:
                   serde: org.apache.kafka.common.serialization.Serdes$StringSerde
                 value:
                   serde: org.apache.kafka.common.serialization.Serdes$StringSerde
-          bindings:
-            payment-request-channel:
-              consumer:
-                timestampExtractorBeanName: requestTimeExtractor
-            payment-confirmation-channel:
-              consumer:
-                timestampExtractorBeanName: confirmationTimeExtractor

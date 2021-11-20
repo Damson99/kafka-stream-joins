@@ -49,7 +49,7 @@ public class OTPValidationKafkaService {
 //                can be replaced with: recordBuilderService::getTransactionStatus
                 (req, conf) -> recordBuilderService.getTransactionStatus(req, conf),
 //                the firth arg is setting time constraint
-//                when the payment request and payment confirmation arrive within 5 minutes window
+//                when the payme nt request and payment confirmation arrive within 5 minutes window
 //                then ValueJoiner is triggered and the transaction status will be successful or failure
                 JoinWindows.of(Duration.ofMinutes(5)),
                 StreamJoined.with(Serdes.String(),

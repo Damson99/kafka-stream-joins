@@ -29,16 +29,39 @@
 #              consumer:
 #                timestampExtractorBeanName: confirmationTimeExtractor
 #=====LAST USER LOGIN=====
+#spring:
+#  profiles:
+#    active: user-login
+#  cloud:
+#    stream:
+#      bindings:
+#        user-master-channel:
+#          destination: user-master
+#        user-login-channel:
+#          destination: user-login
+#      kafka:
+#        streams:
+#          binder:
+#            brokers: localhost:9092
+#            configuration:
+#              commit.interval.ms: 10000
+#              state.dir: state-store
+#              default:
+#                key:
+#                  serde: org.apache.kafka.common.serialization.Serdes$StringSerde
+#                value:
+#                  serde: org.apache.kafka.common.serialization.Serdes$StringSerde
+#=====ADVERT CLICK=====
 spring:
   profiles:
-    active: user-login
+    active: advert-click
   cloud:
     stream:
       bindings:
-        user-master-channel:
-          destination: user-master
-        user-login-channel:
-          destination: user-login
+        inventory-channel:
+          destination: active-inventory
+        click-channel:
+          destination: ad-click
       kafka:
         streams:
           binder:
